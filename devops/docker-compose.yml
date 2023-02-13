@@ -1,0 +1,120 @@
+version: '3.7'
+services:
+  redis:
+    image : redis:5.0.4
+    ports:
+      - "6379:6379"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - webnet
+  gateway:
+    image: jayjaber/gateway
+    ports:
+      - "4000:4000"
+    deploy:
+      replicas: 1
+    networks:
+      - webnet
+    environment:
+      - FRONT_END_HOST=http://frontend:3000
+      - MESSANGER_HOST=http://messanger:5000
+      - WEBSOCKET_HOST=http://websocket:6000/websocket
+      - AUTH_HOST=http://auth:7000
+      - LISTING_HOST=http://listing:8000
+      - INQUIRY_HOST=http://inquiry:9000
+  frontend:
+    image : jayjaber/react
+    ports:
+      - "3000:3000"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - webnet
+  websocket:
+    image : jayjaber/websocket
+    depends_on:
+      - redis
+    ports:
+      - "6000:6000"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - webnet
+    environment:
+      - REDIS_HOST=redis
+  # messanger:
+  #   image : jayjaber/messanger
+  #   depends_on:
+  #     - redis
+  #     - mongodb
+  #   ports:
+  #     - "5000:5000"
+  #   deploy:
+  #     replicas: 1
+  #     restart_policy:
+  #       condition: on-failure
+  #   networks:
+  #     - webnet
+  #   environment:
+  #     - REDIS_HOST=redis
+  #     - MONGO_HOST=mongodb://mongodb:27017
+  auth:
+    image : jayjaber/auth
+    depends_on:
+      - mongodb
+    ports:
+      - "7000:7000"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - webnet
+    environment:
+      - MONGO_HOST=mongodb://mongodb:27017
+  listing:
+    image : jayjaber/listing
+    depends_on:
+      - redis
+      - mongodb
+    ports:
+      - "8000:8000"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - webnet
+    environment:
+      - REDIS_HOST=redis
+      - MONGO_HOST=mongodb://mongodb:27017
+  inquiry:
+    image : jayjaber/inquiry
+    depends_on:
+      - redis
+      - mongodb
+    ports:
+      - "9000:9000"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - webnet
+    environment:
+      - REDIS_HOST=redis
+      - MONGO_HOST=mongodb://mongodb:27017
+networks:
+  webnet:

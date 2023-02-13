@@ -1,0 +1,62 @@
+/* @media (max-width: 500px) {
+  
+} */
+
+/* @media (min-width: 500px) { */
+  .listingMainDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+  }
+
+  .listingAdminButtons {
+    padding: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: black;
+  }
+
+  .listingEditButton {
+    margin-right: 10px;
+  }
+
+  .listingTitle {
+    font-weight: bold;
+    padding: 10px;
+  }
+
+  .listingPrice {
+    font-style: italic;
+    padding: 10px;
+    padding-top: 0px;
+  }
+
+  .listingDescription, .listingItem {
+    padding: 10px;
+    padding-top: 0px;
+  }
+  
+
+  .inquiriesMainDiv {
+    margin-top: 20px;
+  }
+
+  .inquiryCard {
+    background-color: lightgray;
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    margin-top: 10px;
+  }
+
+  .inquiryUndercard {
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 75%;
+    font-style: italic;
+    justify-content: right;
+  }
+/* } */

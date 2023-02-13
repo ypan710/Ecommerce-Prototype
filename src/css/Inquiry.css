@@ -1,0 +1,66 @@
+.inquiriesMainDiv {
+  margin-top: 20px;
+}
+
+.inquiryDisplay {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.inquiryCard {
+  background-color: lightgray;
+  border-radius: 10px;
+  /* border-bottom-left-radius: 2px; */
+  padding: 5px;
+  padding-left: 10px;
+  margin-top: 15px;
+  margin-right: 20px;
+}
+
+.inquiryUndercard {
+  display: flex;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 75%;
+  font-style: italic;
+  justify-content: right;
+  color: grey;
+}
+
+.inquirySubmitButton {
+  margin-bottom: 10px;
+}
+
+.inquiryDeleteButton {
+  margin-bottom: 10px;
+}
+
+.responsesDiv {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.responseCard {
+  background-color: lightskyblue;
+  margin-left: 20px;
+  margin-top: 5px;
+  border-radius: 10px;
+  /* border-bottom-right-radius: 2px; */
+}
+
+.responseTopcard {
+  display: flex;
+  margin-left: 10px;
+  margin-right: 10px;
+  justify-content: left;
+}
+
+.responseUndercard {
+  display: flex;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 75%;
+  font-style: italic;
+  color: darkcyan;
+  justify-content: right;
+}

@@ -1,0 +1,59 @@
+{
+  "name": "lab8",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:4000",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "formik": "^2.2.9",
+    "http-proxy": "^1.17.0",
+    "image-clipper": "^0.4.4",
+    "js-cookie": "^3.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "kafka-node": "^5.0.0",
+    "mongodb": "^3.2.3",
+    "mongoose": "^6.0.12",
+    "react": "^16.8.1",
+    "react-bootstrap": "^2.0.2",
+    "react-dom": "^16.8.1",
+    "react-redux": "^7.2.6",
+    "react-router": "^6.0.1",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "2.1.5",
+    "redis": "^2.8.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "validator": "^13.7.0",
+    "ws": "^6.2.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build-gateway": "docker build -f devops/gateway.Dockerfile -t gateway . && docker tag gateway jayjaber/gateway && docker push jayjaber/gateway",
+    "build-websocket": "docker build -f devops/websocket.Dockerfile -t websocket . && docker tag websocket jayjaber/websocket && docker push jayjaber/websocket",
+    "build-messanger": "docker build -f devops/messanger.Dockerfile -t messanger . && docker tag messanger jayjaber/messanger && docker push jayjaber/messanger",
+    "build-frontend": "docker build -f devops/frontend.Dockerfile -t react . && docker tag react jayjaber/react && docker push jayjaber/react",
+    "build-auth": "docker build -f devops/auth.Dockerfile -t auth . && docker tag auth jayjaber/auth && docker push jayjaber/auth",
+    "build-listing": "docker build -f devops/listing.Dockerfile -t listing . && docker tag listing jayjaber/listing && docker push jayjaber/listing",
+    "build-inquiry": "docker build -f devops/inquiry.Dockerfile -t inquiry . && docker tag inquiry jayjaber/inquiry && docker push jayjaber/inquiry",
+    "build-all-docker": "",
+    "deploy": "docker-compose -f devops/docker-compose.yml pull && docker stack deploy -c devops/docker-compose.yml message-app",
+    "stop": "docker stack remove message-app"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
